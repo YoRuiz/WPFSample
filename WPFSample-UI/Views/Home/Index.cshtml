@@ -1,0 +1,66 @@
+﻿@model WPFSample_UI.Models.VMclsListado
+
+@{
+    ViewBag.Title = "Indice";
+    
+}
+
+<h2>Indice</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @{List<WPFSample.clsPersona> lista = Model.lista.listarBL();}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Número
+        </th>
+        <th>
+          Nombre
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Direccion
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Fecha de nacimiento
+        </th>
+    </tr>
+
+@for (var i = 0; i< Model.cantidad;i++) {
+    <tr>
+        <td>
+            @(i+1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => lista.ElementAt(i).nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => lista.ElementAt(i).apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => lista.ElementAt(i).direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => lista.ElementAt(i).telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => lista.ElementAt(i).fechaNac)
+        </td>
+        <td>
+                @Html.ActionLink("Edit", "Edit", new { id=lista.ElementAt(i).id }) ||||
+                @Html.ActionLink("Details", "Details", new { id = lista.ElementAt(i).id }) ||||
+                @Html.ActionLink("Delete", "Delete", new { id = lista.ElementAt(i).id })
+                
+            </td>
+        </tr>
+    }
+
+    </table>
+<h1 style="background-color:#222;color:#999999;padding:15px">@Model.cantidad filas.</h1>
